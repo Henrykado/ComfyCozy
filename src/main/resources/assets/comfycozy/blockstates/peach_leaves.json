@@ -2,7 +2,7 @@
     "forge_marker": 1,
      "defaults": {
         "textures": {
-            "particle": "comfycozy:blocks/peach_log"
+            "particle": "comfycozy:blocks/peach_leaves"
         },
         "model": "comfycozy:peach_leaves",
         "uvlock": true

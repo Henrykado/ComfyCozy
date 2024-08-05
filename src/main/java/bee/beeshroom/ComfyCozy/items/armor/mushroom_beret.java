@@ -2,6 +2,7 @@ package bee.beeshroom.ComfyCozy.items.armor;
 
 import bee.beeshroom.ComfyCozy.Main;
 import bee.beeshroom.ComfyCozy.init.ModItems;
+import bee.beeshroom.ComfyCozy.util.handlers.ConfigHandler;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,9 +15,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 //thankyou Harry's Tech Reviews Tutorial on Custom Armor Models on Youtube
 
 
-public class ArmorModel extends ItemArmor 
+public class mushroom_beret extends ItemArmor 
 {
-	public ArmorModel(String name, CreativeTabs tab, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn)
+	public mushroom_beret(String name, CreativeTabs tab, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn)
 	{
 		super(materialIn, 1, equipmentSlotIn);
 		setTranslationKey(name);
@@ -24,18 +25,16 @@ public class ArmorModel extends ItemArmor
 		setCreativeTab(tab);
 		setMaxStackSize(1);
 		
-		ModItems.ITEMS.add(this);
+		if (ConfigHandler.MUSHROOM_BERET)
+			ModItems.ITEMS.add(this);
 	}
 	
-	//removed override to get rid of an error :>???
 	//@Override
 	public void registerModels() 
 	{
 		Main.proxy.registerModel(this, 0);
 	} 
 
-	//removed override?? 
-	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) 
@@ -46,9 +45,9 @@ public class ArmorModel extends ItemArmor
 			{
 				ModelMushroomBeret model = new ModelMushroomBeret();
 				
-				model.bipedHead.showModel = armorSlot == EntityEquipmentSlot.HEAD;
+				model.bipedHeadwear.showModel = armorSlot == EntityEquipmentSlot.HEAD;
 				
-				model.isChild = _default.isChild;
+				//model.isChild = _default.isChild;
 				model.isRiding = _default.isRiding;
 				model.isSneak = _default.isSneak;
 				

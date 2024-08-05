@@ -3,33 +3,20 @@
 
 package bee.beeshroom.ComfyCozy.events;
 
-import java.sql.Time;
-import java.util.List;
 import java.util.Random;
 
-import bee.beeshroom.ComfyCozy.blocks.cinnamon_log;
 import bee.beeshroom.ComfyCozy.blocks.crops.oat_plant;
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
-import bee.beeshroom.ComfyCozy.events.ChairEvent.Seat;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
-import bee.beeshroom.ComfyCozy.util.Reference;
 import bee.beeshroom.ComfyCozy.util.handlers.ConfigHandler;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -45,31 +32,21 @@ public class OatSheepEvent {
         Block block = event.getState().getBlock();
         Random rnd = new Random();
         
+        if (block != ModBlocks.OAT_PLANT)
+            return;
         
-        BlockPos oat;
-        
-        
-        if (block == ModBlocks.OAT_PLANT) {//.getDefaultState().withProperty(oat_plant.AGE, Integer.valueOf(4))) {
-            oat = pos;
-        } else return;
-        
-        if (rnd.nextFloat() <= 0.05f)
-        
-        	if(ConfigHandler.OAT_LAMBS)
-            {
-        if (checkStructure(worldIn, oat) && worldIn.canSeeSky(pos)) {
-           
-        	pos = oat;
-        
-            worldIn.setBlockState(oat, Blocks.AIR.getDefaultState());
-            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_SHEEP_AMBIENT, SoundCategory.BLOCKS, 0.5F, 1.6F);
-            EntityOatmealSheep EntityOatmealSheep = new EntityOatmealSheep(worldIn);
-       	// EntityOatmealSheep.setGrowingAge(-22000);
-       	 EntityOatmealSheep.setGrowingAge(-29555);
-            EntityOatmealSheep.setPosition(getCoord(pos.getX()), pos.getY(), getCoord(pos.getZ()));
-        //   EntityOatmealSheep.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, false, pos.getX(), pos.getY(), pos.getZ(), 0, 0, 0, null);    
-            worldIn.spawnEntity(EntityOatmealSheep);
-        }
+        if (rnd.nextFloat() <= 0.05f && ConfigHandler.OAT_LAMBS && ((oat_plant)block).isMaxAge(worldIn.getBlockState(pos)))
+        {
+	        if (checkStructure(worldIn, pos) && worldIn.canSeeSky(pos)) {
+	            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+	            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_SHEEP_AMBIENT, SoundCategory.BLOCKS, 0.5F, 1.6F);
+	            EntityOatmealSheep EntityOatmealSheep = new EntityOatmealSheep(worldIn);
+	            //EntityOatmealSheep.setGrowingAge(-22000);
+	            EntityOatmealSheep.setGrowingAge(-29555);
+	            EntityOatmealSheep.setPosition(getCoord(pos.getX()), pos.getY(), getCoord(pos.getZ()));
+	            //EntityOatmealSheep.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, false, pos.getX(), pos.getY(), pos.getZ(), 0, 0, 0, null);    
+	            worldIn.spawnEntity(EntityOatmealSheep);
+	        }
         }
     }
 	private static double getCoord(int c) {
@@ -77,10 +54,10 @@ public class OatSheepEvent {
 		return c + Math.signum(c)*0.0D;
 	}
 	
-	private static boolean checkStructure(World worldIn, BlockPos oat) {
-		return worldIn.getBlockState(oat).getBlock() == ModBlocks.OAT_PLANT;
+	private static boolean checkStructure(World worldIn, BlockPos pos) {
+		return worldIn.getBlockState(pos).getBlock() == ModBlocks.OAT_PLANT;
 	}
-	 }
+}
 	//private GolemEvent() {
 //
 		//

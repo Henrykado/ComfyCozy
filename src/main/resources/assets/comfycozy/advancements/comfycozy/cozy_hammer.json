@@ -16,12 +16,12 @@
         "oatmeal": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:cozy_hammer"
-                }
+                "items": [
+					{
+						"item": "comfycozy:cozy_hammer"
+					}
+				]
             }
         }
-
-       
-        }
-        }
+    }
+}

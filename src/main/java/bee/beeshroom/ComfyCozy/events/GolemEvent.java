@@ -48,7 +48,6 @@ public class GolemEvent {
             EntityFurnaceGolem.setPosition(getCoord(pos.getX()), pos.getY(), getCoord(pos.getZ()));
             //worldIn.playSound((EntityPlayer)null, pos, SoundsHandler.CARVE, SoundCategory.BLOCKS, 0.3F, 0.1F);  
             worldIn.spawnEntity(EntityFurnaceGolem);
-            
         }
         }
     }

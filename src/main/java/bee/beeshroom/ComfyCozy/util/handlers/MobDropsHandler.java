@@ -2,9 +2,9 @@ package bee.beeshroom.ComfyCozy.util.handlers;
 
 import java.util.Random;
 
+import bee.beeshroom.ComfyCozy.entity.EntityDirtyPig;
 import bee.beeshroom.ComfyCozy.entity.EntityFurnaceGolem;
 import bee.beeshroom.ComfyCozy.entity.EntityMushy;
-import bee.beeshroom.ComfyCozy.entity.entitydirtypig.EntityDirtyPig;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;

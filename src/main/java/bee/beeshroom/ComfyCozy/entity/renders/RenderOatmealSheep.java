@@ -1,5 +1,6 @@
-package bee.beeshroom.ComfyCozy.entity;
+package bee.beeshroom.ComfyCozy.entity.renders;
 
+import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
 import bee.beeshroom.ComfyCozy.entity.layers.LayerOatmealSheepOats;
 import bee.beeshroom.ComfyCozy.entity.models.ModelOatmealSheep2;
 import bee.beeshroom.ComfyCozy.util.Reference;
@@ -29,6 +30,6 @@ public class RenderOatmealSheep extends RenderLiving<EntityOatmealSheep>
     @Override
     protected ResourceLocation getEntityTexture(EntityOatmealSheep entity)
     {
-        return SHEARED_OATMEALSHEEP_TEXTURES;
+    	return SHEARED_OATMEALSHEEP_TEXTURES;
     }
 }

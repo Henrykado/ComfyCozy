@@ -1,5 +1,6 @@
-package bee.beeshroom.ComfyCozy.entity;
+package bee.beeshroom.ComfyCozy.entity.renders;
 
+import bee.beeshroom.ComfyCozy.entity.EntityMushy;
 import bee.beeshroom.ComfyCozy.entity.models.ModelMushy;
 import bee.beeshroom.ComfyCozy.util.Reference;
 import net.minecraft.client.renderer.entity.RenderLiving;

@@ -9,7 +9,7 @@
         "description": {
             "translate": "advancements.comfycozy.cinnamon_challenge.description"
         },
-             "frame": "challenge",
+        "frame": "challenge",
         "hidden": true
     },
     "parent": "comfycozy:comfycozy/root",
@@ -17,11 +17,12 @@
         "cinnamon": {
             "trigger": "consume_item",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:cinnamon"
-                }
+                "items": [
+					{
+						"item": "comfycozy:cinnamon"
+					}
+				]
             }
         }
-       
-        }
-        }
+    }
+}

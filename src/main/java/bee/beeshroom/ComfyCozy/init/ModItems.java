@@ -7,7 +7,7 @@ import bee.beeshroom.ComfyCozy.Main;
 import bee.beeshroom.ComfyCozy.items.ItemBase;
 import bee.beeshroom.ComfyCozy.items.oat_seeds;
 import bee.beeshroom.ComfyCozy.items.strawberry_seeds;
-import bee.beeshroom.ComfyCozy.items.armor.ArmorModel;
+import bee.beeshroom.ComfyCozy.items.armor.mushroom_beret;
 import bee.beeshroom.ComfyCozy.items.food.ItemCustomFood;
 import bee.beeshroom.ComfyCozy.items.food.cinnamon;
 import bee.beeshroom.ComfyCozy.items.food.cinnamon_cookie;
@@ -37,7 +37,7 @@ public class ModItems {
 	public static final ArmorMaterial ARMOR_MUSHROOM = EnumHelper.addArmorMaterial("armor_mushroom", Reference.MOD_ID + ":armor_mushroom", 
 			5, new int[] {1, 2, 3, 1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
 	//Armor
-	public static final Item MUSHROOM_BERET = new ArmorModel("mushroom_beret", Main.comfycozytab, ARMOR_MUSHROOM, EntityEquipmentSlot.HEAD);
+	public static final Item MUSHROOM_BERET = new mushroom_beret("mushroom_beret", Main.comfycozytab, ARMOR_MUSHROOM, EntityEquipmentSlot.HEAD);
 
 	
 	//items
@@ -58,7 +58,7 @@ public class ModItems {
 	public static final Item OATMEAL = new oatmeal("oatmeal", 6, .4f, false);
 	public static final Item CINNAMON_OATMEAL = new cinnamon_oatmeal("cinnamon_oatmeal", 7, .5f, false);
 	public static final Item STRAWBERRY_OATMEAL = new strawberry_oatmeal("strawberry_oatmeal", 7, .5f, false);
-public static final Item PEACH_OATMEAL = new peach_oatmeal("peach_oatmeal", 9, .6f, false);
+	public static final Item PEACH_OATMEAL = new peach_oatmeal("peach_oatmeal", 9, .6f, false);
 	public static final Item GOLD_APPLE_CINNAMON_OATMEAL = new gold_apple_cinnamon_oatmeal("gold_apple_cinnamon_oatmeal", 10, .6f, false);
 	public static final Item CINNAMON_COOKIE = new cinnamon_cookie("cinnamon_cookie", 2, .4f, false);
 	public static final Item STRAWBERRY_JAM = new strawberry_jam("strawberry_jam", 6, .4f, false);

@@ -16,6 +16,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISit;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest2;
+import net.minecraft.entity.item.EntityMinecartFurnace;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
@@ -44,7 +45,7 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
 {	
 	  public int timeUntilNextHeal;
 	  private int fuel;
-	  private boolean attacking;
+	  //private boolean attacking;
     private int attackTimer;
    // private EntityAISit aiSit;
 	 private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityFurnaceGolem.class, DataSerializers.BOOLEAN);
@@ -121,19 +122,19 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
 	    
 	    protected void collideWithEntity(Entity entityIn)
 	    {
-	    	  if (!(entityIn instanceof EntityPlayer))
-		        {
-		            super.collideWithEntity(entityIn);
-		        }
+	    	if (!(entityIn instanceof EntityPlayer))
+	        {
+	            super.collideWithEntity(entityIn);
+	        }
+	    	
 	    	if (entityIn instanceof IMob && this.getRNG().nextInt(20) == 0)
 	        {
 	            this.setAttackTarget((EntityLivingBase)entityIn);
 	        }
 
-	        super.collideWithEntity(entityIn);
+	        //super.collideWithEntity(entityIn);
 	    }
 	    
-	    @SideOnly(Side.CLIENT)
 	    public void onLivingUpdate()
 	    {
 	        super.onLivingUpdate();
@@ -151,7 +152,6 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
             {
 	        	if (this.fuel > 0)
 	        	{
-                	
                 	 this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
                 	 this.heal(2f);
                 	 this.playSound(SoundEvents.BLOCK_FIRE_AMBIENT, 1.0F, 1.0F);
@@ -160,12 +160,10 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
                      double d2 = this.rand.nextGaussian() * 0.02D;
                 	   this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);  
                 	*/
-                	 this.timeUntilNextHeal = 50;
+                	 //this.timeUntilNextHeal = 50;
                 	   // this.playSound(SoundsHandler.PLANT, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            }
-            
-              
-                	 this.timeUntilNextHeal = 50;
+	        	}
+	        	this.timeUntilNextHeal = 50;
             }
 	        
 	    }
@@ -219,7 +217,6 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
 	    /**
 	     * Handler for {@link World#setEntityState}
 	     */
-	    @SideOnly(Side.CLIENT)
 	    public void handleStatusUpdate(byte id)
 	    {
 	        if (id == 4)
@@ -242,7 +239,6 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
 	        }
 	    }
 	    
-	    @SideOnly(Side.CLIENT)
 	    public int getAttackTimer()
 	    {
 	        return this.attackTimer;
@@ -278,7 +274,6 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
         }
         else
         {
-            //return SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE;
         	return null;
         }
     }
@@ -317,7 +312,6 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
         return 1.6F;
     }
     
-    @SideOnly(Side.CLIENT)  
     public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn)
     {
         super.setAttackTarget(entitylivingbaseIn);
@@ -333,18 +327,14 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
         }
         else
         {
-        	
         	//added this if fuel
         	if (this.fuel > 0)
             {
             	this.setAttacking(true);
             }
-            
-            
         }
     }
    
-    @SideOnly(Side.CLIENT)
     protected void updateAITasks()
     {
     	   
@@ -401,7 +391,7 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
 
             //if (super.processInitialInteract(player, hand)) return true;
             
-    //Furnace Minecraft code referenced	  ///////took away !player.isSneaking() &&  bc it was breaking it maybe? ??? 
+    //Furnace Minecart code referenced	  ///////took away !player.isSneaking() &&  bc it was breaking it maybe? ??? 
             if (this.fuel + 1500 <= 12000 && itemstack.getItem() == Items.COAL || itemstack.getItem() == Item.getItemFromBlock(Blocks.LOG) || itemstack.getItem() == Item.getItemFromBlock(Blocks.LOG2)) //&& ((Float)this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 20.0F)
             {
                 if (!player.capabilities.isCreativeMode)
@@ -413,7 +403,7 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
                 double d1 = this.rand.nextGaussian() * 0.02D;
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
-                this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
+                for (int i = 0; i < 3; i++) this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
            //     this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
           	  
                 this.fuel += 1500;
@@ -609,19 +599,16 @@ public class EntityFurnaceGolem extends EntityGolem //implements IAnimals
         return flag;
     }*/
   
-    @SideOnly(Side.CLIENT)
     public boolean isAttacking()
     {
         return ((Boolean)this.dataManager.get(ATTACKING)).booleanValue();
     }
 
-    @SideOnly(Side.CLIENT)
     public void setAttacking(boolean attacking)
     {
         this.dataManager.set(ATTACKING, Boolean.valueOf(attacking));
     }
     
-    @SideOnly(Side.CLIENT)
     protected void entityInit()
     {
         super.entityInit();

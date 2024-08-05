@@ -10,10 +10,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeForest;
 import net.minecraft.world.biome.BiomeHell;
-import net.minecraft.world.biome.BiomeHellDecorator;
 import net.minecraft.world.biome.BiomeJungle;
 import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.biome.BiomeSwamp;
@@ -32,7 +30,7 @@ public class WorldGen implements IWorldGenerator
 	//private final WorldGenerator TURKEYTAIL = new WorldGenTurkeytail();
 	private final WorldGenerator PEACH = new WorldGenPeach(true);
 	private final WorldGenerator BIGWHITEMUSHROOM = new WorldGenBigWhiteMushroom(true);
-private final WorldGenerator WHITEMUSHROOM = new WorldGenWhiteMushroom();
+	private final WorldGenerator WHITEMUSHROOM = new WorldGenWhiteMushroom();
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
@@ -43,47 +41,52 @@ private final WorldGenerator WHITEMUSHROOM = new WorldGenWhiteMushroom();
 			break;
 			
 		case 0:
+			if (ConfigHandler.CINNAMON)
+			{
+				runGenerator(CINNAMON, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeJungle.class);
+				runGenerator(CINNAMON, world, random, chunkX, chunkZ, 2, Blocks.DIRT, BiomeJungle.class);
+				
+				if(ConfigHandler.CINNAMON_ANYWHERE)
+					runGenerator(CINNAMON, world, random, chunkX, chunkZ, 55, Blocks.GRASS, BiomeForest.class);
+			}
 			
-			runGenerator(CINNAMON, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeJungle.class);
-			runGenerator(CINNAMON, world, random, chunkX, chunkZ, 2, Blocks.DIRT, BiomeJungle.class);
+			if(ConfigHandler.PEACH)
+			{
+				runGenerator(PEACH, world, random, chunkX, chunkZ, ConfigHandler.PEACH_CHANCE, Blocks.GRASS, BiomeForest.class);
+			}
 			
-		//	System.out.println("JUNGLE");
+			if (ConfigHandler.WHITE_MUSHROOM)
+			{
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.GRASS, BiomeForest.class);
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeSwamp.class);
+				//runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.DIRT, BiomeForest.class);
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 1, Blocks.MYCELIUM, BiomeMushroomIsland.class);
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.DIRT, BiomeTaiga.class);
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeTaiga.class);
+			}
+				
 			
-			 if(ConfigHandler.CINNAMON)
-		        {
-			runGenerator(CINNAMON, world, random, chunkX, chunkZ, 55, Blocks.GRASS, BiomeForest.class);
-		        }
-			
-			 if(ConfigHandler.PEACH)
-		        {
-			runGenerator(PEACH, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeForest.class);
-		        }
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.GRASS, BiomeForest.class);
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeSwamp.class);
-			//runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.DIRT, BiomeForest.class);
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 1, Blocks.MYCELIUM, BiomeMushroomIsland.class);
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.DIRT, BiomeTaiga.class);
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 2, Blocks.GRASS, BiomeTaiga.class);
-			
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.NETHERRACK, BiomeHell.class);
-			runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 6, Blocks.NETHER_BRICK, BiomeHell.class);
-			
-
 			runGenerator(BIGWHITEMUSHROOM, world, random, chunkX, chunkZ, 1, Blocks.MYCELIUM, BiomeMushroomIsland.class);
 			
 			if(ConfigHandler.STRAWBERRY)
-	        {
-			runGenerator(STRAWBERRY, world, random, chunkX, chunkZ, 15, Blocks.GRASS, BiomeForest.class);
-			runGenerator(STRAWBERRY, world, random, chunkX, chunkZ, 6, Blocks.GRASS, BiomeTaiga.class);
-	        }
+			{
+				runGenerator(STRAWBERRY, world, random, chunkX, chunkZ, 15, Blocks.GRASS, BiomeForest.class);
+				runGenerator(STRAWBERRY, world, random, chunkX, chunkZ, 6, Blocks.GRASS, BiomeTaiga.class);
+			}
 			//runGenerator(TURKEYTAIL, world, random, chunkX, chunkZ, 10, Blocks.LOG, BiomeForest.class);
 			//runGenerator(TURKEYTAIL, world, random, chunkX, chunkZ, 15, Blocks.LOG2, BiomeForest.class);
 			
-		//	runGenerator(CINNAMON, world, random, chunkX, chunkZ, 85, Blocks.GRASS, getBiomes(BiomeDictionary.Type.JUNGLE));
+			//	runGenerator(CINNAMON, world, random, chunkX, chunkZ, 85, Blocks.GRASS, getBiomes(BiomeDictionary.Type.JUNGLE));
 			
 			break;
 			
 		case -1:
+			if (ConfigHandler.WHITE_MUSHROOM)
+			{
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 10, Blocks.NETHERRACK, BiomeHell.class);
+				runGenerator(WHITEMUSHROOM, world, random, chunkX, chunkZ, 6, Blocks.NETHER_BRICK, BiomeHell.class);
+			}
+			break;
 		}}
 	
 	/*private static Biome[] getBiomes(final BiomeDictionary.Type type) {
@@ -110,7 +113,9 @@ private final WorldGenerator WHITEMUSHROOM = new WorldGenWhiteMushroom();
 				{
 					generator.generate(world, random, pos);
 				}
-			}}}
+			}
+		}
+	}
 	
 	private static int calculateGenerationHeight(World world, int x, int z, Block topBlock)
 	{

@@ -5,14 +5,10 @@ import javax.annotation.Nonnull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bee.beeshroom.ComfyCozy.entity.EntityDirtyPig;
 import bee.beeshroom.ComfyCozy.entity.EntityFurnaceGolem;
 import bee.beeshroom.ComfyCozy.entity.EntityMushy;
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepCinnamon;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepGoldApple;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepPeach;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepStrawberry;
-import bee.beeshroom.ComfyCozy.entity.entitydirtypig.EntityDirtyPig;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
 import bee.beeshroom.ComfyCozy.init.ModItems;
 import bee.beeshroom.ComfyCozy.util.Reference;
@@ -68,11 +64,6 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
 
     final ResourceLocation EntityFurnaceGolem = new ResourceLocation(Reference.MOD_ID, "entityfurnacegolem");
     
-    final ResourceLocation EntityOatmealSheepStrawberry = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepstrawberry");
-    final ResourceLocation EntityOatmealSheepCinnamon = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepcinnamon");
-    final ResourceLocation EntityOatmealSheepPeach = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheeppeach");
-    final ResourceLocation EntityOatmealSheepGoldApple = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepgoldapple");
-    
 
     event.getRegistry().registerAll(
         EntityEntryBuilder.create()
@@ -80,7 +71,7 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
             .egg(16768180, 15447932)
             .id(EntityOatmealSheep, entityId++)
             .name(EntityOatmealSheep.getPath())
-            .tracker(32, 5, false)
+            .tracker(80, 3, false)
             .build(),
             
         EntityEntryBuilder.create()
@@ -88,51 +79,23 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
             .egg(13639962, 16182236)
             .id(EntityMushy, entityId++)
             .name(EntityMushy.getPath())
-            .tracker(32, 5, false)
+            .tracker(80, 3, false)
             .build(),
             
-            EntityEntryBuilder.create()
+        EntityEntryBuilder.create()
             .entity(EntityDirtyPig.class)
             .egg(13799274, 7490088)
             .id(EntityDirtyPig, entityId++)
             .name(EntityDirtyPig.getPath())
-            .tracker(32, 5, false)
+            .tracker(80, 3, false)
             .build(),
             
-            EntityEntryBuilder.create()
-            .entity(EntityFurnaceGolem.class)
-            .id(EntityFurnaceGolem, entityId++)
-            .name(EntityFurnaceGolem.getPath())
-            .tracker(32, 5, false)
-            .build(),
-            
-                    EntityEntryBuilder.create()
-                        .entity(EntityOatmealSheepStrawberry.class)
-                        .id(EntityOatmealSheepStrawberry, entityId++)
-                        .name(EntityOatmealSheepStrawberry.getPath())
-                        .tracker(32, 5, false)
-                        .build(),
-                        
-                        EntityEntryBuilder.create()
-                        .entity(EntityOatmealSheepCinnamon.class)
-                        .id(EntityOatmealSheepCinnamon, entityId++)
-                        .name(EntityOatmealSheepCinnamon.getPath())
-                        .tracker(32, 5, false)
-                        .build(),
-                        
-                        EntityEntryBuilder.create()
-                        .entity(EntityOatmealSheepPeach.class)
-                        .id(EntityOatmealSheepPeach, entityId++)
-                        .name(EntityOatmealSheepPeach.getPath())
-                        .tracker(32, 5, false)
-                        .build(),
-                        
-                        EntityEntryBuilder.create()
-                        .entity(EntityOatmealSheepGoldApple.class)
-                        .id(EntityOatmealSheepGoldApple, entityId++)
-                        .name(EntityOatmealSheepGoldApple.getPath())
-                        .tracker(32, 5, false)
-                        .build()
+		EntityEntryBuilder.create()
+			.entity(EntityFurnaceGolem.class)
+			.id(EntityFurnaceGolem, entityId++)
+			.name(EntityFurnaceGolem.getPath())
+			.tracker(80, 3, false)
+			.build()
             
          
                 /*    EntityEntryBuilder.create()
@@ -155,15 +118,15 @@ private static void addSpawns() {
 	//EntityRegistry.addSpawn(EntityMushy.class, 10, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.MAGICAL));
 	if(ConfigHandler.SHROOMINI)
     {
-	EntityRegistry.addSpawn(EntityMushy.class, 5, 1, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.MUSHROOM));
-	EntityRegistry.addSpawn(EntityMushy.class, 45, 2, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SPOOKY));
-	EntityRegistry.addSpawn(EntityMushy.class, 35, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SWAMP));
-	EntityRegistry.addSpawn(EntityMushy.class, 7, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.FOREST));
+		EntityRegistry.addSpawn(EntityMushy.class, 5, 1, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.MUSHROOM));
+		EntityRegistry.addSpawn(EntityMushy.class, 45, 2, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SPOOKY));
+		EntityRegistry.addSpawn(EntityMushy.class, 35, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SWAMP));
+		if (ConfigHandler.SHROOMINI_FORESTS) EntityRegistry.addSpawn(EntityMushy.class, 7, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.FOREST));
     }
 	if(ConfigHandler.DIRTY_PIG)
     {
-	EntityRegistry.addSpawn(EntityDirtyPig.class, 20, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.FOREST));
-	EntityRegistry.addSpawn(EntityDirtyPig.class, 25, 1, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SWAMP));
+		EntityRegistry.addSpawn(EntityDirtyPig.class, 25, 1, 3, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.SWAMP));
+		if (ConfigHandler.DIRTY_PIG_FORESTS) EntityRegistry.addSpawn(EntityDirtyPig.class, 20, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.FOREST));
     }
 	//copySpawns(EntityPlayerAvoidingCreeper.class, EnumCreatureType.CREATURE, EntityCreeper.class, EnumCreatureType.MONSTER);
 }

@@ -1,8 +1,10 @@
 package bee.beeshroom.ComfyCozy.entity.layers;
 
+import java.util.logging.Logger;
+
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
-import bee.beeshroom.ComfyCozy.entity.RenderOatmealSheep;
 import bee.beeshroom.ComfyCozy.entity.models.ModelOatmealSheep1;
+import bee.beeshroom.ComfyCozy.entity.renders.RenderOatmealSheep;
 import bee.beeshroom.ComfyCozy.util.Reference;
 import net.minecraft.client.model.ModelSheep1;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,6 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class LayerOatmealSheepOats implements LayerRenderer<EntityOatmealSheep>
 {//changed from textures/entity
 	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID + ":textures/entity/oatmealsheep/oatmealsheep_fur.png");
+	private static final ResourceLocation TEXTURE_STRAWBERRY = new ResourceLocation(Reference.MOD_ID + ":textures/entity/oatmealsheep/oatmealsheep_fur_strawberry.png");
+	private static final ResourceLocation TEXTURE_CINNAMON = new ResourceLocation(Reference.MOD_ID + ":textures/entity/oatmealsheep/oatmealsheep_fur_cinnamon.png");
+	private static final ResourceLocation TEXTURE_PEACH = new ResourceLocation(Reference.MOD_ID + ":textures/entity/oatmealsheep/oatmealsheep_fur_peach.png");
+	private static final ResourceLocation TEXTURE_GAPPLE = new ResourceLocation(Reference.MOD_ID + ":textures/entity/oatmealsheep/oatmealsheep_fur_gold_apple.png");
     private final RenderOatmealSheep oatmealsheepRenderer;
     private final ModelOatmealSheep1 oatmealsheepModel = new ModelOatmealSheep1();
 
@@ -31,25 +37,24 @@ public class LayerOatmealSheepOats implements LayerRenderer<EntityOatmealSheep>
     {
         if (!entitylivingbaseIn.getSheared() && !entitylivingbaseIn.isInvisible())
         {
-            this.oatmealsheepRenderer.bindTexture(TEXTURE);
-
-       /*     if (entitylivingbaseIn.hasCustomName() && "Strawberry Oatmeal".equals(entitylivingbaseIn.getCustomNameTag()))
-            {
-              /*  int i1 = 25;
-                int i = entitylivingbaseIn.ticksExisted / 25 + entitylivingbaseIn.getEntityId();
-                int j = EnumDyeColor.values().length;
-                int k = i % j;
-                int l = (i + 1) % j;
-                float f = ((float)(entitylivingbaseIn.ticksExisted % 25) + partialTicks) / 25.0F;
-                float[] afloat1 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(k));
-                float[] afloat2 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(l));
-                GlStateManager.color(afloat1[0] * (1.0F - f) + afloat2[0] * f, afloat1[1] * (1.0F - f) + afloat2[1] * f, afloat1[2] * (1.0F - f) + afloat2[2] * f); */
-      //      }
- //           else
-     //       {
-           //     float[] afloat = EntityOatmealSheep.getDyeRgb(entitylivingbaseIn.getOatFlavor());
-              //  GlStateManager.color(afloat[0], afloat[1], afloat[2]);
-        //    } 
+            switch (entitylivingbaseIn.getOatFlavor())
+        	{
+        		default: 
+        			oatmealsheepRenderer.bindTexture(TEXTURE); 
+        			break;
+        		case STRAWBERRY: 
+        			oatmealsheepRenderer.bindTexture(TEXTURE_STRAWBERRY); 
+        			break;
+        		case CINNAMON: 
+        			oatmealsheepRenderer.bindTexture(TEXTURE_CINNAMON); 
+        			break;
+        		case PEACH: 
+        			oatmealsheepRenderer.bindTexture(TEXTURE_PEACH); 
+        			break;
+        		case GAPPLE: 
+        			oatmealsheepRenderer.bindTexture(TEXTURE_GAPPLE); 
+        			break;
+        	}
 
             this.oatmealsheepModel.setModelAttributes(this.oatmealsheepRenderer.getMainModel());
             this.oatmealsheepModel.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);

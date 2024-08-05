@@ -18,8 +18,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @EventBusSubscriber
 public class RegistryHandlerTwo
 	{
-	
-	
 		public static void preInitRegistries(FMLPreInitializationEvent event)
 		{
 			//FluidInit.registerFluids();
@@ -27,15 +25,13 @@ public class RegistryHandlerTwo
 			//GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
 			//GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
 			GameRegistry.registerWorldGenerator((IWorldGenerator) new WorldGen(), 0);
-			MinecraftForge.addGrassSeed(new ItemStack(ModItems.STRAWBERRY_SEEDS), 2);
-			MinecraftForge.addGrassSeed(new ItemStack(ModItems.OAT_SEEDS), 14);
+			if (ConfigHandler.STRAWBERRY_SEEDS) MinecraftForge.addGrassSeed(new ItemStack(ModItems.STRAWBERRY_SEEDS), ConfigHandler.STRAWBERRY_SEEDS_WEIGHT);
+			if (ConfigHandler.OAT_SEEDS) MinecraftForge.addGrassSeed(new ItemStack(ModItems.OAT_SEEDS), ConfigHandler.OAT_SEEDS_WEIGHT);
 			EventHandler.registerEvents();
 			SoundsHandler.registerSounds();
-		//	EntityList.addMapping(EntityOatmealSheep.class, "EntityOatmealSheep", 3, 4930341, 1584909);
-		//	BiomeInit.registerBiomes();
+			//EntityList.addMapping(EntityOatmealSheep.class, "EntityOatmealSheep", 3, 4930341, 1584909);
+			//BiomeInit.registerBiomes();
 			//ModConfiguration.registerConfig(event);
-			ConfigHandler.registerConfig(event);
-			
 		}
 		
 		public static void initRegistries(FMLInitializationEvent event) 

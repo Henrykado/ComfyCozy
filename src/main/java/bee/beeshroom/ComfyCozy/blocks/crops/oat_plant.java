@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepCinnamon;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepGoldApple;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepPeach;
-import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheepStrawberry;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
 import bee.beeshroom.ComfyCozy.init.ModItems;
 import net.minecraft.block.Block;
@@ -362,28 +358,25 @@ public class oat_plant extends BlockCrops implements IGrowable
 				  
 				  public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 				    {
-					  Random rand = worldIn instanceof World ? ((World)worldIn).rand : new Random();
+					  //Random rand = worldIn instanceof World ? ((World)worldIn).rand : new Random();
 					  AxisAlignedBB bounds = CARPET_AABB.offset(pos);
-					//i looked at DetectorRail code and Quark's obsidian pressure plate code for this
-					  List<? extends Entity> entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheep.class, bounds);
-					  entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheepCinnamon.class, bounds);
-					  entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheepStrawberry.class, bounds);
-					  entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheepPeach.class, bounds);
-					  entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheepGoldApple.class, bounds);
 					  
-					    if (!entities.isEmpty()) {
+					  //i looked at DetectorRail code and Quark's obsidian pressure plate code for this
+					  List<? extends Entity> entities = worldIn.getEntitiesWithinAABB(EntityOatmealSheep.class, bounds);
+					  
+					  if (!entities.isEmpty()) {
 				            for(Entity entity : entities) {
-				        if (!worldIn.isRemote)
-				        {
-				            int i = this.getAge(state);
-
-				            if (i < 4)
-				            {
-				                if (RANDOM.nextInt(975) == 0)
-				                this.updateState(worldIn, pos, state);
-				            }
-				        }
-				    }
+						        if (!worldIn.isRemote)
+						        {
+						            int i = this.getAge(state);
+		
+						            if (i < 4)
+						            {
+						                if (RANDOM.nextInt(975) == 0)
+						                this.updateState(worldIn, pos, state);
+						            }
+						        }
+						    }
 					    }
 				    }
 				  

@@ -82,7 +82,6 @@ public class cozy_hammer extends Item
 		{
 			world.getBlockState(pos).getBlock().rotateBlock(world, pos, side.getOpposite());
 			world.playSound((EntityPlayer)null, pos, SoundsHandler.HAMMER, SoundCategory.BLOCKS, 0.5F, 0.6F);
-			 //world.spawnParticle(EnumParticleTypes.END_ROD, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 			  double d0 = itemRand.nextGaussian() * 0.02D;
               double d1 = itemRand.nextGaussian() * 0.02D;
               double d2 = itemRand.nextGaussian() * 0.02D;

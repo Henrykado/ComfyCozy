@@ -19,60 +19,74 @@
         "oatmeal": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:oatmeal"
-                }
+                "items": [
+					{
+						"item": "comfycozy:oatmeal"
+					}
+				]
             }
         },
           "peach": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:peach_oatmeal"
-                }
+                "items": [
+					{
+						"item": "comfycozy:peach_oatmeal"
+					}
+				]
             }
         },
          "gapple": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:gold_apple_cinnamon_oatmeal"
-                }
+                "items": [
+					{
+						"item": "comfycozy:gold_apple_cinnamon_oatmeal"
+					}
+				]
             }
         },
         
          "strawberry": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:strawberry_oatmeal"
-                }
+                "items": [
+					{
+						"item": "comfycozy:strawberry_oatmeal"
+					}
+				]
             }
         },
          "cinnamon": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:cinnamon_oatmeal"
-                }
+                "items": [
+					{
+						"item": "comfycozy:cinnamon_oatmeal"
+					}
+				]
             }
         },
         
           "cinnamon_cookie": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:cinnamon_cookie"
-                }
+                "items": [
+					{
+						"item": "comfycozy:cinnamon_cookie"
+					}
+				]
             }
         },
         
          "strawberry_jam": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "comfycozy:strawberry_jam"
-                }
+                "items": [
+					{
+						"item": "comfycozy:strawberry_jam"
+					}
+				]
             }
         },
         
@@ -108,8 +122,5 @@
                 ]
             }
         }
-        
-        
-       
-        }
-        }
+    }
+}
