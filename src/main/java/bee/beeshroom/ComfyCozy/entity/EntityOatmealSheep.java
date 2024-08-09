@@ -374,10 +374,15 @@ public class EntityOatmealSheep extends EntityAnimal implements net.minecraftfor
 
     public EntityOatmealSheep createChild(EntityAgeable ageable)
     {
-        //EntityOatmealSheep entityoatmealsheep = (EntityOatmealSheep)ageable;
-        EntityOatmealSheep entityoatmealsheep1 = new EntityOatmealSheep(this.world);
-        //entityoatmealsheep1.setOatFlavor(this.getDyeColorMixFromParents(this, entityoatmealsheep));
-        return entityoatmealsheep1;
+        EntityOatmealSheep other_parent = (EntityOatmealSheep)ageable;
+        EntityOatmealSheep child = new EntityOatmealSheep(this.world);
+        if (this.rand.nextInt(2) == 0) {
+        	child.setOatFlavor(this.getOatFlavor());
+        }
+        else {
+        	child.setOatFlavor(other_parent.getOatFlavor());
+        }
+        return child;
     }
 
     //

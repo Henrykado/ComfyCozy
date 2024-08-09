@@ -9,6 +9,7 @@ import bee.beeshroom.ComfyCozy.entity.EntityDirtyPig;
 import bee.beeshroom.ComfyCozy.entity.EntityFurnaceGolem;
 import bee.beeshroom.ComfyCozy.entity.EntityMushy;
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
+import bee.beeshroom.ComfyCozy.entity.legacy.*;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
 import bee.beeshroom.ComfyCozy.init.ModItems;
 import bee.beeshroom.ComfyCozy.util.Reference;
@@ -20,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -64,6 +66,12 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
 
     final ResourceLocation EntityFurnaceGolem = new ResourceLocation(Reference.MOD_ID, "entityfurnacegolem");
     
+    // legacy stuff
+    final ResourceLocation EntityOatmealSheepStrawberry = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepstrawberry");
+    final ResourceLocation EntityOatmealSheepCinnamon = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepcinnamon");
+    final ResourceLocation EntityOatmealSheepPeach = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheeppeach");
+    final ResourceLocation EntityOatmealSheepGoldApple = new ResourceLocation(Reference.MOD_ID, "entityoatmealsheepgoldapple");
+  
 
     event.getRegistry().registerAll(
         EntityEntryBuilder.create()
@@ -95,8 +103,36 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
 			.id(EntityFurnaceGolem, entityId++)
 			.name(EntityFurnaceGolem.getPath())
 			.tracker(80, 3, false)
-			.build()
-            
+			.build(),
+           
+			
+			EntityEntryBuilder.create()
+	            .entity(EntityOatmealSheepStrawberry.class)
+	            .id(EntityOatmealSheepStrawberry, entityId++)
+	            .name(EntityOatmealSheepStrawberry.getPath())
+	            .tracker(80, 3, false)
+	            .build(),
+	            
+	        EntityEntryBuilder.create()
+	            .entity(EntityOatmealSheepCinnamon.class)
+	            .id(EntityOatmealSheepCinnamon, entityId++)
+	            .name(EntityOatmealSheepCinnamon.getPath())
+	            .tracker(80, 3, false)
+	            .build(),
+	            
+	        EntityEntryBuilder.create()
+	            .entity(EntityOatmealSheepPeach.class)
+	            .id(EntityOatmealSheepPeach, entityId++)
+	            .name(EntityOatmealSheepPeach.getPath())
+	            .tracker(80, 3, false)
+	            .build(),
+	            
+	        EntityEntryBuilder.create()
+	            .entity(EntityOatmealSheepGoldApple.class)
+	            .id(EntityOatmealSheepGoldApple, entityId++)
+	            .name(EntityOatmealSheepGoldApple.getPath())
+	            .tracker(80, 3, false)
+	            .build()
          
                 /*    EntityEntryBuilder.create()
                         .entity(EntityCarpet.class)
@@ -113,6 +149,30 @@ public static void onRegisterEntitiesEvent(@Nonnull final RegistryEvent.Register
     LOGGER.debug("Registered entities");
     addSpawns();
 }
+
+/*@SubscribeEvent
+static void updateMissingMappings(@Nonnull final RegistryEvent.MissingMappings<EntityEntry> event) {	
+	for (Mapping<EntityEntry> i : event.getMappings())
+	{
+		switch (i.key.getPath())
+		{
+			case "entityoatmealsheepstrawberry":
+				break;
+			case "entityoatmealsheepcinnamon":
+				break;
+			case "entityoatmealsheeppeach":
+				break;
+			case "entityoatmealsheepgoldapple":
+				i.remap(EntityEntryBuilder.create()
+                        .entity(EntityOatmealSheepGoldApple.class)
+                        .id(EntityOatmealSheepGoldApple, entityId++)
+                        .name(EntityOatmealSheepGoldApple.getPath())
+                        .tracker(80, 3, false)
+                        .build());
+				break;
+		}
+	}
+}*/
 
 private static void addSpawns() {
 	//EntityRegistry.addSpawn(EntityMushy.class, 10, 1, 1, EnumCreatureType.CREATURE, getBiomes(BiomeDictionary.Type.MAGICAL));
