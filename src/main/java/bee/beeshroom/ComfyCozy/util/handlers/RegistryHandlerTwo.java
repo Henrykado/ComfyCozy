@@ -2,6 +2,7 @@
 package bee.beeshroom.ComfyCozy.util.handlers;
 import bee.beeshroom.ComfyCozy.Main;
 import bee.beeshroom.ComfyCozy.init.ModItems;
+import bee.beeshroom.ComfyCozy.util.Reference;
 import bee.beeshroom.ComfyCozy.util.compat.OreDictionaryCompat;
 import bee.beeshroom.ComfyCozy.world.generation.generators.WorldGen;
 //import bee.beeshroom.ComfyCozy.world.generation.generators.WorldGenTrees;
@@ -15,7 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 // Credit to Harry's Tech Reviews / Modding Tutorials on youtube 
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class RegistryHandlerTwo
 	{
 		public static void preInitRegistries(FMLPreInitializationEvent event)

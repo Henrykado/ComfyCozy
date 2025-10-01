@@ -8,6 +8,7 @@ import java.util.Random;
 import bee.beeshroom.ComfyCozy.blocks.crops.oat_plant;
 import bee.beeshroom.ComfyCozy.entity.EntityOatmealSheep;
 import bee.beeshroom.ComfyCozy.init.ModBlocks;
+import bee.beeshroom.ComfyCozy.util.Reference;
 import bee.beeshroom.ComfyCozy.util.handlers.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //credit to fradige95 on Curseforge / nivoridocs on github. this is just an edit of their golem spawn code.
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class OatSheepEvent {
 
 	@SubscribeEvent

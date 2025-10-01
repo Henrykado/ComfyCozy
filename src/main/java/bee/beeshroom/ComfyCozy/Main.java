@@ -4,6 +4,7 @@ import bee.beeshroom.ComfyCozy.advancements.GoldAppleLambTrigger;
 import bee.beeshroom.ComfyCozy.proxy.CommonProxy;
 import bee.beeshroom.ComfyCozy.tabs.ComfyCozyTab;
 import bee.beeshroom.ComfyCozy.util.Reference;
+import bee.beeshroom.ComfyCozy.util.handlers.LootTableHandler;
 import bee.beeshroom.ComfyCozy.util.handlers.MobDropsHandler;
 import bee.beeshroom.ComfyCozy.util.handlers.RegistryHandlerTwo;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -33,6 +34,7 @@ public class Main {
 	{	
 		RegistryHandlerTwo.preInitRegistries(event);
 		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
+		MinecraftForge.EVENT_BUS.register(new LootTableHandler());
 		//OreDictionaryCompat.registerOres();
 		
 		CriteriaTriggers.register(GoldAppleLambTrigger.INSTANCE);

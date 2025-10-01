@@ -4,6 +4,7 @@
 package bee.beeshroom.ComfyCozy.events;
 
 import bee.beeshroom.ComfyCozy.entity.EntityFurnaceGolem;
+import bee.beeshroom.ComfyCozy.util.Reference;
 import bee.beeshroom.ComfyCozy.util.handlers.ConfigHandler;
 import bee.beeshroom.ComfyCozy.util.handlers.SoundsHandler;
 import net.minecraft.block.Block;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //credit to fradige95 on Curseforge / nivoridocs on github.
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class GolemEvent {
 
 	@SubscribeEvent

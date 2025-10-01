@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //credit to fradige95 on Curseforge / nivoridocs on github.
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class ComfySummonEvent 
 {
 	@SubscribeEvent
