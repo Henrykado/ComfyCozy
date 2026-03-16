@@ -17,11 +17,11 @@
         "cinnamon": {
             "trigger": "consume_item",
             "conditions": {
-                "items": [
-					{
-						"item": "comfycozy:cinnamon"
-					}
-				]
+                "item": {
+                    "items": [
+                        "comfycozy:cinnamon"
+                    ]
+                }
             }
         }
     }
